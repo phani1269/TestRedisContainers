@@ -1,0 +1,27 @@
+version: '3.4'
+
+services:
+
+  redisCache:
+    image: redis:alpine
+
+
+  productdb:
+    image: mcr.microsoft.com/mssql/server:2017-latest
+  #rediscache:
+  #  image: redis:alpine
+  
+
+  #chargesapi:
+  #  image: ${DOCKER_REGISTRY-}chargesapi
+  #  build:
+  #    context: .
+  #    dockerfile: src/SecondAPI/Dockerfile
+
+
+#volumes:
+#    redis_data:
+
+
+
+

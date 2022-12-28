@@ -1,0 +1,66 @@
+version: '3.4'
+
+services:
+  #rediscache:
+  #  container_name: rediscache
+  #  restart: always
+  #  command: 
+  #    -  --save 10 1
+  #  ports:
+  #    - "6379:6379"
+  #  volumes:
+  #      - redis_data:/data
+
+  productdb:
+    container_name: productdb
+    environment:
+        MSSQL_SA_PASSWORD: "SwN12345678"
+        ACCEPT_EULA: "Y"
+    restart: always
+    ports:
+        - "1440:1433"
+
+  redisCache:
+    container_name: redisCache
+    restart: always
+    command: 
+      -  --port 6381
+    ports:
+      - "6381:6381"
+
+  #chargesapi:
+  #  container_name: chargesapi
+  #  environment:
+  #    - ASPNETCORE_ENVIRONMENT=Development
+  #    - "RedisCache:Host=rediscache"
+  #    - "RedisCache:Port=6379"
+  #  depends_on:
+  #    - rediscache
+  #  ports:
+  #    - "6002:80"
+
+
+  #productapi:
+  #  container_name: productapi
+  #  environment:
+  #    - ASPNETCORE_ENVIRONMENT=Development
+  #    - "ConnectionStrings:SqlConnectionString= Server=productdb;Database=ProductDb; User Id= SA ;Password= SwN12345678"
+  #    - "RedisCache:Host=redisCache"
+  #    - "RedisCache:Port=6381"
+  #  depends_on:
+  #    - productdb
+  #    - redisCache
+  #  ports:
+  #    - "6001:80"
+
+
+  #productresponsecaching:
+  #  container_name: productresponsecaching
+  #  environment:
+  #    - ASPNETCORE_ENVIRONMENT=Development
+  #    - "ConnectionStrings:SqlConnectionString= Server=productdb;Database=ProductDb; User Id= SA ;Password= SwN12345678"
+  #  depends_on:
+  #    - productdb
+  #  ports:
+  #    - "6003:80"
+
